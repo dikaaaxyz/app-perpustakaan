@@ -41,12 +41,10 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 
 #### Sebelum
 
-```
-![Route List Sebelum diubah ](Minggu 2/sebelum.png)
-```
+![Route List Sebelum diubah]
+<img src="Minggu 2/sebelum.png">
 
 #### Sesudah
 
-```
-![Route List Admin](Minggu 2/sesudah.png)
-```
+![Route List Admin]
+<img src="Minggu 2/sesudah.png">
