@@ -21,7 +21,7 @@ Project ini dikembangkan untuk memenuhi tugas praktikum pemgrograman web guna me
 
 ---
 
-### Tugas 3: Tambahkan Penjelasan MVC (Model, View, Controller)
+### Tugas 1: Tambahkan Penjelasan MVC (Model, View, Controller)
 
 Tugas ini meminta kamu menuliskan penjelasan singkat (2-3 kalimat) mengenai perbedaan Model, View, dan Controller. Kamu bisa menambahkannya di bagian bawah file `README.md` yang baru saja diedit tadi.
 
@@ -31,4 +31,22 @@ Tugas ini meminta kamu menuliskan penjelasan singkat (2-3 kalimat) mengenai perb
 - **Model:** Berfungsi untuk mengelola logika data, aturan bisnis, serta berkomunikasi langsung dengan database.
 - **View:** Berfungsi sebagai antarmuka atau tampilan visual yang dilihat langsung oleh pengguna di browser.
 - **Controller:** Berfungsi sebagai penghubung (jembatan) antara Model dan View untuk memproses permintaan pengguna.
+```
+
+---
+
+### Tugas Minggu 2 :
+
+Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
+
+#### Sebelum
+
+```
+![Route List Sebelum diubah ](Minggu 2/sebelum.png)
+```
+
+#### Sesudah
+
+```
+![Route List Admin](Minggu 2/sesudah.png)
 ```
