@@ -48,3 +48,13 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 
 ![Route List Admin]
 <img src="Minggu 2/sesudah.png">
+
+### Tugas Minggu 3 :
+
+Link commit GitHub (branch dev) yang berisi hasil tugas
+
+Screenshot form /members/create setelah submit kosong (menampilkan error validasi) dan setelah submit valid (menampilkan flash message sukses
+
+#### Screenshot form /member/create error kosong
+
+<img src="minggu3/ss.png>
