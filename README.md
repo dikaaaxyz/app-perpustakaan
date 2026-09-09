@@ -57,4 +57,4 @@ Screenshot form /members/create setelah submit kosong (menampilkan error validas
 
 #### Screenshot form /member/create error kosong
 
-<img src="minggu3/ss.png>
+<img src="minggu3/ss.png">
