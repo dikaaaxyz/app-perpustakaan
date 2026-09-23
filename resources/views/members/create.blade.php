@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Tambah Buku</title>
+    <title>Tambah Member</title>
     <style>
         body { font-family: sans-serif; margin: 40px; max-width: 500px; }
         label { display: block; margin-top: 12px; font-weight: bold; }

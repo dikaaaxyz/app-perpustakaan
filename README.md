@@ -51,10 +51,24 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 
 ### Tugas Minggu 3 :
 
-Link commit GitHub (branch dev) yang berisi hasil tugas
+-Link commit GitHub (branch dev) yang berisi hasil tugas
 
-Screenshot form /members/create setelah submit kosong (menampilkan error validasi) dan setelah submit valid (menampilkan flash message sukses
+-Screenshot form /members/create setelah submit kosong (menampilkan error validasi) dan setelah submit valid (menampilkan flash message sukses
 
 #### Screenshot form /member/create error kosong
 
 <img src="minggu3/ss.png">
+
+### Tugas Minggu 4 :
+
+-Link commit GitHub (branch dev) yang berisi hasil tugas
+
+-Screenshot /books/create dan /categories/create setelah di-refactor, menampilkan navbar yang sama seperti halaman index
+
+#### Screenshot /books/create
+
+<img src="minggu4/bookscreate.png">
+
+#### Screenshot /categories/create
+
+<img src="minggu4/categoriescreate.png">
