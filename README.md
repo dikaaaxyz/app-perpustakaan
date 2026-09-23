@@ -49,6 +49,8 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 ![Route List Admin]
 <img src="Minggu 2/sesudah.png">
 
+---
+
 ### Tugas Minggu 3 :
 
 -Link commit GitHub (branch dev) yang berisi hasil tugas
@@ -58,6 +60,8 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 #### Screenshot form /member/create error kosong
 
 <img src="minggu3/ss.png">
+
+---
 
 ### Tugas Minggu 4 :
 
@@ -72,3 +76,5 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 #### Screenshot /categories/create
 
 <img src="minggu4/categoriescreate.png">
+
+---
