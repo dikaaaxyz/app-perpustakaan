@@ -66,7 +66,6 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 ### Tugas Minggu 4 :
 
 -Link commit GitHub (branch dev) yang berisi hasil tugas
-
 -Screenshot /books/create dan /categories/create setelah di-refactor, menampilkan navbar yang sama seperti halaman index
 
 #### Screenshot /books/create
@@ -76,5 +75,21 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 #### Screenshot /categories/create
 
 <img src="minggu4/categoriescreate.png">
+
+---
+
+### Tugas Minggu 5
+
+-Link commit GitHub (branch dev) yang berisi hasil tugas
+-Screenshot /members menampilkan data nyata dari database beserta hasil pencarian nama anggota
+
+#### Screenshot database halaman anggota
+
+<img src="minggu5/image.png">
+<img src="minggu5/image1.png">
+
+#### Screenshot filtering / hasil pencarian anggota / search
+
+<img src="minggu5/image2.png">
 
 ---
