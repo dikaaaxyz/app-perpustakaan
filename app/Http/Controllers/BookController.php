@@ -10,49 +10,49 @@ use App\Models\Category;
 class BookController extends Controller
 {
     public function index()
-{
-    $books = Book::paginate(10);
+    {
+        $books = Book::with('category')->paginate(10);
 
-    return view('books.index', compact('books'));
-}
+        return view('books.index', compact('books'));
+    }
 
-public function create()
-{
-    $categories = Category::all();
+    public function create()
+    {
+        $categories = Category::all();
 
-    return view('books.create', compact('categories'));
-}
+        return view('books.create', compact('categories'));
+    }
 
-public function store(StoreBookRequest $request)
-{
-    $validated = $request->validated();
+    public function store(StoreBookRequest $request)
+    {
+        $validated = $request->validated();
 
-    Book::create($validated);
+        Book::create($validated);
 
-    return redirect()->route('books.index')
-        ->with('success', "Buku \"{$validated['judul']}\" berhasil ditambahkan.");
-}
+        return redirect()->route('books.index')
+            ->with('success', "Buku \"{$validated['judul']}\" berhasil ditambahkan.");
+    }
 
-public function show(string $id)
-{
-    $book = Book::findOrFail($id);
+    public function show(string $id)
+    {
+        $book = Book::with('category')->findOrFail($id);
 
-    return view('books.show', compact('book'));
-}
+        return view('books.show', compact('book'));
+    }
 
-public function edit(string $id)
-{
-    $book = Book::findOrFail($id);
-    $categories = Category::all();
+    public function edit(string $id)
+    {
+        $book = Book::findOrFail($id);
+        $categories = Category::all();
 
-    return view('books.edit', compact('book', 'categories'));
-}
+        return view('books.edit', compact('book', 'categories'));
+    }
 
-public function update(Request $request, string $id)
-{
-    $book = Book::findOrFail($id);
+    public function update(Request $request, string $id)
+    {
+        $book = Book::findOrFail($id);
 
-    $validated = $request->validate([
+        $validated = $request->validate([
         'judul' => 'required|string|max:200',
         'penulis' => 'required|string|max:100',
         'penerbit' => 'required|string|max:100',
@@ -62,18 +62,18 @@ public function update(Request $request, string $id)
         'category_id' => 'required|integer|exists:categories,id',
     ]);
 
-    $book->update($validated);
+        $book->update($validated);
 
-    return redirect()->route('books.index')
-        ->with('success', "Buku \"{$validated['judul']}\" berhasil diperbarui.");
-}
+        return redirect()->route('books.index')
+            ->with('success', "Buku \"{$validated['judul']}\" berhasil diperbarui.");
+    }
 
-public function destroy(string $id)
-{
-    $book = Book::findOrFail($id);
-    $book->delete();
+    public function destroy(string $id)
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
 
-    return redirect()->route('books.index')
-        ->with('success', 'Buku berhasil dihapus.');
-}
+        return redirect()->route('books.index')
+            ->with('success', 'Buku berhasil dihapus.');
+    }
 }

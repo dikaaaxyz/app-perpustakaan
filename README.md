@@ -93,3 +93,46 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 <img src="minggu5/image2.png">
 
 ---
+
+### Minggu 6 (Modul 7)
+
+---
+
+#### Screenshot langkah 2
+
+---
+
+<img src="minggu6/langkah2.png">
+
+---
+
+#### Screenshot tugas
+
+- Link commit GitHub (branch dev) yang berisi hasil tugas
+- Screenshot /loans menampilkan badge status berwarna dan tombol "Kembalikan" yang berfungsi
+
+---
+
+###### Tampilan awal
+
+---
+
+<img src="minggu6/index.png">
+
+---
+
+###### Button Kembalikan
+
+---
+
+<img src="minggu6/button.png">
+
+---
+
+###### Tampilan akhir (berhasil dikembalikan )
+
+---
+
+<img src="minggu6/dikembalikan.png">
+
+---
