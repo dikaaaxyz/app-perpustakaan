@@ -136,3 +136,33 @@ Dokumentasi untuk hasil screenshoot sebelum admin group dan selesai admin group
 <img src="minggu6/dikembalikan.png">
 
 ---
+
+### Minggu 7 (Pertemuan 8.md)
+
+---
+
+#### Tugas
+
+---
+
+Lengkapi dua fitur berikut di atas sistem autentikasi yang sudah berfungsi:
+
+1. Halaman profil petugas - buat route GET /profil (terproteksi auth) dan ProfileController@show yang menampilkan nama, email, dan role user yang sedang login lewat auth()->user(). Tambahkan link "Profil" di navbar.
+2. Fitur ganti password - tambahkan form di halaman profil dengan tiga input: password lama, password baru, dan konfirmasi password baru. Validasi lengkap: password lama harus cocok dengan yang tersimpan (gunakan Hash::check()), password baru wajib minimal 8 karakter dan harus sama dengan konfirmasinya (confirmed rule). Simpan password baru dengan Hash::make(), jangan pernah simpan sebagai teks biasa.
+
+---
+
+##### Yang dikumpulkan:
+
+1. Link commit GitHub (branch dev) yang berisi hasil tugas
+2. Screenshot halaman profil dan proses ganti password yang berhasil (disertai pesan sukses)
+
+---
+
+#### Screenshot tugas
+
+---
+
+<img src="minggu7/updatepass.png">
+
+---
