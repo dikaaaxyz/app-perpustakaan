@@ -8,16 +8,61 @@ Project ini dikembangkan untuk memenuhi tugas praktikum pemgrograman web guna me
 
 ## Cara Menjalankan Project secara Lokal
 
-1. Clone repository ini atau simpan di direktori `htdocs` XAMPP.
-2. Pastikan service **Apache** dan **MySQL** aktif di XAMPP Control Panel.
-3. Salin file `.env.example` menjadi `.env` lalu sesuaikan konfigurasi database (`DB_DATABASE=db_perpustakaan`).
-4. Buka terminal di folder project, lalu jalankan perintah berikut:
-    ```bash
-    composer install
-    php artisan key:generate
-    php artisan migrate
-    php artisan serve
-    ```
+1. **Clone repository ini:**
+   ```bash
+   git clone https://github.com/<username>/app-perpustakaan.git
+   cd app-perpustakaan
+   ```
+2. **Install dependency PHP (Composer):**
+   ```bash
+   composer install
+   ```
+3. **Konfigurasi Environment (`.env`):**
+   Salin file `.env.example` menjadi `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   Pastikan pengaturan database dan API internal pada `.env` telah sesuai:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=db_perpustakaan
+   DB_USERNAME=root
+   DB_PASSWORD=
+
+   # Base URL instance kedua untuk panggilan API internal
+   INTERNAL_API_URL=http://127.0.0.1:8011
+   APP_FAKER_LOCALE=id_ID
+   ```
+4. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
+5. **Migrasi Database & Seeding Data:**
+   Pastikan service **MySQL** sudah aktif (misalnya via XAMPP), lalu jalankan:
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+   *Seeding mencakup data pengguna (admin & petugas), 5 kategori, 20 buku realistis, 15 anggota mahasiswa (@pens.ac.id), dan 10 riwayat transaksi peminjaman.*
+
+6. **Menjalankan Dua Server (Penting):**
+   Karena server bawaan `php artisan serve` bersifat *single-threaded*, memanggil API dari dalam aplikasi sendiri (misalnya Dashboard dan Laporan Peminjaman) membutuhkan dua instance server agar tidak terjadi *deadlock*:
+   - **Terminal 1 (Server Utama untuk Web UI & Request Eksternal):**
+     ```bash
+     php artisan serve --port=8000
+     ```
+   - **Terminal 2 (Server Internal untuk Melayani `Http::get()`):**
+     ```bash
+     php artisan serve --port=8011
+     ```
+
+7. **Akses Aplikasi di Browser:**
+   Buka `http://127.0.0.1:8000/login`
+   - **Admin:** `admin@pens.ac.id` / `password` (Bambang Sutrisno)
+   - **Petugas:** `petugas1@pens.ac.id` / `password` (Siti Rahmawati)
+
+> Panduan demo lengkap untuk pengujian fitur & UAS dapat dilihat pada file [DEMO.md](DEMO.md).
 
 ---
 
@@ -190,3 +235,20 @@ Seluruh rute API memerlukan header request berikut:
 | POST   | `/api/loans`              | 201 Created              | `{"member_id":1,"user_id":3,"tanggal_pinjam":"2026-11-04","tanggal_kembali":"2026-11-11","book_ids":[3]}`                                                | `{"data":{"id":5,"member":{"id":1,"nama":"TEDDY"},"petugas":{"id":3,"name":"Petugas Satu"},"tanggal_pinjam":"2026-11-04","tanggal_kembali":"2026-11-11","tanggal_dikembalikan":null,"status":"dipinjam","books":[{"id":3,"judul":"KISAH CINTA PRABOWO TEDDY"}]}}`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | PUT    | `/api/loans/4/kembalikan` | 200 OK                   | -                                                                                                                                                        | `{"data":{"id":4,"member":{"id":1,"nama":"TEDDY"},"petugas":{"id":3,"name":"Petugas Satu"},"tanggal_pinjam":"2026-10-07","tanggal_kembali":"2026-10-14","tanggal_dikembalikan":"2026-11-04","status":"dikembalikan","books":[{"id":3,"judul":"KISAH CINTA PRABOWO TEDDY"}]}}`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | GET    | `/api/stats`              | 200 OK                   | -                                                                                                                                                        | `{"total_buku": 2,"total_anggota": 2,"peminjaman_aktif": 1}`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+
+---
+
+### MINGGU 10 (Pertemuan 10 - Blade + Konsumsi API & Finalisasi Project)
+
+Pada pertemuan ini, aplikasi Laravel bertindak sebagai klien dari API internalnya sendiri:
+1. **Dashboard (`DashboardController@index`):** Memanggil `GET /api/stats` via Laravel HTTP Client (`Http::get()`) dan menampilkan kartu statistik ringkas (Total Buku, Total Anggota, Peminjaman Aktif).
+2. **Laporan Peminjaman (`LoanController@report`):** Memanggil `GET /api/loans` (paginated) via Laravel HTTP Client dan menampilkan laporan tabel transaksi lengkap beserta navigasi halaman.
+3. **Pencegahan Hang/Deadlock Single-Threaded Server:** Menggunakan konfigurasi `INTERNAL_API_URL` dan dua instance server (`--port=8000` dan `--port=8011`).
+4. **Fallback Error Koneksi:** Implementasi `try/catch (\Illuminate\Http\Client\ConnectionException $e)` memastikan aplikasi tidak menampilkan error 500 saat server API sedang tidak dapat dijangkau.
+5. **Seeder & Factory Realistis (Indonesia):**
+   - Menggunakan `APP_FAKER_LOCALE=id_ID` untuk nama dan alamat Indonesia.
+   - Domain email mahasiswa dikurasi menggunakan `@pens.ac.id`.
+   - Judul buku dan penerbit dikurasi dari buku dan penerbit populer Indonesia (Gramedia, Balai Pustaka, Mizan, dll.).
+   - Relasi konsisten pada tabel peminjaman dan item peminjaman.
+6. **Perbaikan Tampilan Pagination:** Mengganti view default Tailwind dengan view custom bersih (`resources/views/vendor/pagination/custom.blade.php`) via `Paginator::defaultView()` sehingga tombol navigasi halaman tampil rapi di seluruh halaman CRUD.
+
